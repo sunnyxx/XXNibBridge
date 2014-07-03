@@ -1,24 +1,22 @@
 //
-//  XXInterfaceBuilderBridge.m
-//  XXInterfaceBuilderBridgeDemo
+//  XXNibBridge.m
 //
 //  Created by sunnyxx on 14-7-2.
-//  Copyright (c) 2014年 sunnyxx. All rights reserved.
+//  Copyright (c) 2014 sunnyxx. All rights reserved.
 //
 
 #import "XXNibBridge.h"
 
 @implementation NSObject (XXNibLoading)
 
-+ (NSString *)xx_IBID
++ (NSString *)xx_nibID
 {
     return NSStringFromClass(self);
 }
 
 + (id)xx_loadFromNib
 {
-    UINib *nib = [UINib nibWithNibName:NSStringFromClass(self) bundle:nil];
-    NSArray *objects = [nib instantiateWithOwner:nil options:nil];
+    NSArray *objects = [[self xx_nib] instantiateWithOwner:nil options:nil];
     for (UIView *obj in objects)
     {
         if ([obj isMemberOfClass:self])
@@ -32,12 +30,12 @@
 + (id)xx_loadFromStoryboardNamed:(NSString *)name
 {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:name bundle:nil];
-    return [sb instantiateViewControllerWithIdentifier:[self xx_IBID]];
+    return [sb instantiateViewControllerWithIdentifier:[self xx_nibID]];
 }
 
 + (UINib *)xx_nib
 {
-    return [UINib nibWithNibName:[self xx_IBID] bundle:nil];
+    return [UINib nibWithNibName:[self xx_nibID] bundle:nil];
 }
 
 @end
@@ -69,7 +67,7 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
 
 @implementation UIView (XXNibBridge)
 
-+ (BOOL)xx_shouldApplyIBBridging
++ (BOOL)xx_shouldApplyNibBridging
 {
     return NO;
 }
@@ -92,7 +90,7 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
         // Require nib name is equal to class name
         UIView *view = [[self class] xx_loadFromNib];
         
-        NSAssert(view, @"View of class [%@] could not load from nib, check whether the view in nib binds the correct class", [[self class] xx_IBID]);
+        NSAssert(view, @"View of class [%@] could not load from nib, check whether the view in nib binds the correct class", [[self class] xx_nibID]);
         
         view.frame = self.frame;
         view.autoresizingMask = self.autoresizingMask;

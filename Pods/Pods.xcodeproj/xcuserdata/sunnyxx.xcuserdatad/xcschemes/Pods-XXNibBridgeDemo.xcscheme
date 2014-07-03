@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1E7890A102474172BB8DF301"
+               BlueprintIdentifier = "7D09DE9D937A49E5AC799BEB"
                BuildableName = "libPods-XXNibBridgeDemo.a"
                BlueprintName = "Pods-XXNibBridgeDemo"
                ReferencedContainer = "container:Pods.xcodeproj">
