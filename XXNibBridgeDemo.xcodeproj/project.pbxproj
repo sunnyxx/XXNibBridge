@@ -15,14 +15,15 @@
 		48107E271965BAA9002C7C38 /* XXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 48107E261965BAA9002C7C38 /* XXAppDelegate.m */; };
 		48107E2A1965BAA9002C7C38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48107E281965BAA9002C7C38 /* Main.storyboard */; };
 		48107E2F1965BAA9002C7C38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48107E2E1965BAA9002C7C38 /* Images.xcassets */; };
-		48107E4E1965BB6C002C7C38 /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 48107E4D1965BB6C002C7C38 /* XXNibBridge.m */; };
 		48107E551965BBEF002C7C38 /* XXDogeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48107E501965BBEF002C7C38 /* XXDogeView.m */; };
 		48107E561965BBEF002C7C38 /* XXDogeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48107E511965BBEF002C7C38 /* XXDogeView.xib */; };
 		48107E571965BBEF002C7C38 /* XXSarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48107E531965BBEF002C7C38 /* XXSarkView.m */; };
 		48107E581965BBEF002C7C38 /* XXSarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48107E541965BBEF002C7C38 /* XXSarkView.xib */; };
+		604CF887893E4B918C3F7455 /* libPods-XXNibBridgeDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B50C815C20446C6B7399B9D /* libPods-XXNibBridgeDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B50C815C20446C6B7399B9D /* libPods-XXNibBridgeDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XXNibBridgeDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48107E131965BAA9002C7C38 /* XXNibBridgeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XXNibBridgeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48107E161965BAA9002C7C38 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48107E181965BAA9002C7C38 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -36,14 +37,13 @@
 		48107E291965BAA9002C7C38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48107E2E1965BAA9002C7C38 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		48107E351965BAAA002C7C38 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		48107E4C1965BB6C002C7C38 /* XXNibBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibBridge.h; sourceTree = "<group>"; };
-		48107E4D1965BB6C002C7C38 /* XXNibBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibBridge.m; sourceTree = "<group>"; };
 		48107E4F1965BBEF002C7C38 /* XXDogeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDogeView.h; sourceTree = "<group>"; };
 		48107E501965BBEF002C7C38 /* XXDogeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDogeView.m; sourceTree = "<group>"; };
 		48107E511965BBEF002C7C38 /* XXDogeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXDogeView.xib; sourceTree = "<group>"; };
 		48107E521965BBEF002C7C38 /* XXSarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSarkView.h; sourceTree = "<group>"; };
 		48107E531965BBEF002C7C38 /* XXSarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSarkView.m; sourceTree = "<group>"; };
 		48107E541965BBEF002C7C38 /* XXSarkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXSarkView.xib; sourceTree = "<group>"; };
+		CB00ED07703C43B889CF8245 /* Pods-XXNibBridgeDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XXNibBridgeDemo.xcconfig"; path = "Pods/Pods-XXNibBridgeDemo.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +54,7 @@
 				48107E191965BAA9002C7C38 /* CoreGraphics.framework in Frameworks */,
 				48107E1B1965BAA9002C7C38 /* UIKit.framework in Frameworks */,
 				48107E171965BAA9002C7C38 /* Foundation.framework in Frameworks */,
+				604CF887893E4B918C3F7455 /* libPods-XXNibBridgeDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +67,7 @@
 				48107E1C1965BAA9002C7C38 /* XXNibBridgeDemo */,
 				48107E151965BAA9002C7C38 /* Frameworks */,
 				48107E141965BAA9002C7C38 /* Products */,
+				CB00ED07703C43B889CF8245 /* Pods-XXNibBridgeDemo.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +86,7 @@
 				48107E181965BAA9002C7C38 /* CoreGraphics.framework */,
 				48107E1A1965BAA9002C7C38 /* UIKit.framework */,
 				48107E351965BAAA002C7C38 /* XCTest.framework */,
+				1B50C815C20446C6B7399B9D /* libPods-XXNibBridgeDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -92,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				48107E591965BBF2002C7C38 /* Nib views */,
-				48107E4B1965BB6C002C7C38 /* XXNibBridge */,
 				48107E251965BAA9002C7C38 /* XXAppDelegate.h */,
 				48107E261965BAA9002C7C38 /* XXAppDelegate.m */,
 				48107E281965BAA9002C7C38 /* Main.storyboard */,
@@ -111,15 +113,6 @@
 				48107E241965BAA9002C7C38 /* XXNibBridgeDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		48107E4B1965BB6C002C7C38 /* XXNibBridge */ = {
-			isa = PBXGroup;
-			children = (
-				48107E4C1965BB6C002C7C38 /* XXNibBridge.h */,
-				48107E4D1965BB6C002C7C38 /* XXNibBridge.m */,
-			);
-			path = XXNibBridge;
 			sourceTree = "<group>";
 		};
 		48107E591965BBF2002C7C38 /* Nib views */ = {
@@ -142,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48107E451965BAAA002C7C38 /* Build configuration list for PBXNativeTarget "XXNibBridgeDemo" */;
 			buildPhases = (
+				FFCBB3B9B2F04EB8A13B9F9F /* Check Pods Manifest.lock */,
 				48107E0F1965BAA9002C7C38 /* Sources */,
 				48107E101965BAA9002C7C38 /* Frameworks */,
 				48107E111965BAA9002C7C38 /* Resources */,
+				1653B909B5044EE4A00D677A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,12 +192,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1653B909B5044EE4A00D677A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-XXNibBridgeDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFCBB3B9B2F04EB8A13B9F9F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48107E0F1965BAA9002C7C38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48107E4E1965BB6C002C7C38 /* XXNibBridge.m in Sources */,
 				48107E551965BBEF002C7C38 /* XXDogeView.m in Sources */,
 				48107E571965BBEF002C7C38 /* XXSarkView.m in Sources */,
 				48107E271965BAA9002C7C38 /* XXAppDelegate.m in Sources */,
@@ -304,6 +331,7 @@
 		};
 		48107E461965BAAA002C7C38 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB00ED07703C43B889CF8245 /* Pods-XXNibBridgeDemo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -317,6 +345,7 @@
 		};
 		48107E471965BAAA002C7C38 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB00ED07703C43B889CF8245 /* Pods-XXNibBridgeDemo.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

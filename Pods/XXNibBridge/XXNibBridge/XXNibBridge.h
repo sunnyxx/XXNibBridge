@@ -13,14 +13,14 @@
 /// etc cell reuse id, storyboard id
 + (NSString *)xx_nibID;
 
-/// UINib object with same name from main bundle
-+ (UINib *)xx_nib;
-
 /// Load object of this class from IB file with SAME name
 + (id)xx_loadFromNib;
 
 /// Load UIViewController of this class from given storyboard name
 + (id/*UIViewController*/)xx_loadFromStoryboardNamed:(NSString *)name;
+
+/// UINib object with same name from main bundle
++ (UINib *)xx_nib;
 
 @end
 

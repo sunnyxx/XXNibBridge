@@ -1,0 +1,14 @@
+PODS:
+  - XXNibBridge (1.0)
+
+DEPENDENCIES:
+  - XXNibBridge (from `https://github.com/sunnyxx/XXNibBridge.git`)
+
+EXTERNAL SOURCES:
+  XXNibBridge:
+    :git: https://github.com/sunnyxx/XXNibBridge.git
+
+SPEC CHECKSUMS:
+  XXNibBridge: 4697add5a023b0ceb8424945df650666ad7271da
+
+COCOAPODS: 0.33.1
