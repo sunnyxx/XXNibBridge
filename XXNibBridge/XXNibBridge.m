@@ -95,7 +95,6 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
         view.frame = self.frame;
         view.autoresizingMask = self.autoresizingMask;
         view.hidden = self.hidden;
-        view.backgroundColor = self.backgroundColor;
         
         // Autolayout support
         if ([view respondsToSelector:@selector(translatesAutoresizingMaskIntoConstraints)])
