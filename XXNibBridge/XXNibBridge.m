@@ -69,7 +69,7 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
 
 + (BOOL)xx_shouldApplyNibBridging
 {
-    return YES;
+    return NO;
 }
 
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder

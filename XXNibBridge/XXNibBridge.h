@@ -28,7 +28,7 @@
 @interface UIView (XXNibBridge)
 
 /// Subclass override it to switch On/Off IB bridging.
-/// default -> YES
+/// default -> NO
 + (BOOL)xx_shouldApplyNibBridging;
 
 @end
