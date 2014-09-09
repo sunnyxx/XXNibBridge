@@ -17,7 +17,7 @@
 + (UINib *)xx_nib;
 
 /// Load object of this class from IB file with SAME name
-+ (id)xx_loadFromNib;
++ (id)xx_loadFromNibWithOwner:(id)owner;
 
 /// Load UIViewController of this class from given storyboard name
 + (id/*UIViewController*/)xx_loadFromStoryboardNamed:(NSString *)name;
@@ -30,5 +30,9 @@
 /// Subclass override it to switch On/Off IB bridging.
 /// default -> NO
 + (BOOL)xx_shouldApplyNibBridging;
+
++ (Class)xx_ownerClass;
+
+- (id)owner;
 
 @end

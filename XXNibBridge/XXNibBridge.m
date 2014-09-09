@@ -6,6 +6,7 @@
 //
 
 #import "XXNibBridge.h"
+#import <objc/runtime.h>
 
 @implementation NSObject (XXNibLoading)
 
@@ -14,9 +15,9 @@
     return NSStringFromClass(self);
 }
 
-+ (id)xx_loadFromNib
++ (id)xx_loadFromNibWithOwner:(id)owner
 {
-    NSArray *objects = [[self xx_nib] instantiateWithOwner:nil options:nil];
+    NSArray *objects = [[self xx_nib] instantiateWithOwner:owner options:nil];
     for (UIView *obj in objects)
     {
         if ([obj isMemberOfClass:self])
@@ -72,6 +73,16 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
     return NO;
 }
 
++ (Class)xx_ownerClass
+{
+    return nil;
+}
+
+- (id)owner
+{
+    return objc_getAssociatedObject(self, "owner");
+}
+
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder
 {
     self = [super awakeAfterUsingCoder:aDecoder];
@@ -87,8 +98,15 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
     {
         setIBReplaceFlag([self class], YES);
         
+        Class ownerClass = [[self class] xx_ownerClass];
+        id owner;
+        if (ownerClass) {
+            owner = [ownerClass new];
+        }
         // Require nib name is equal to class name
-        UIView *view = [[self class] xx_loadFromNib];
+        UIView *view = [[self class] xx_loadFromNibWithOwner:owner];
+        
+        objc_setAssociatedObject(view, "owner", owner, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         NSAssert(view, @"View of class [%@] could not load from nib, check whether the view in nib binds the correct class", [[self class] xx_nibID]);
         
