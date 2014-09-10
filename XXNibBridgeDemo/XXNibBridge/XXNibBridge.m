@@ -6,7 +6,6 @@
 //
 
 #import "XXNibBridge.h"
-#import <objc/runtime.h>
 
 @implementation NSObject (XXNibLoading)
 
@@ -26,6 +25,11 @@
         }
     }
     return nil;
+}
+
++ (id)xx_loadFromNib
+{
+    return [self xx_loadFromNibWithOwner:nil];
 }
 
 + (id)xx_loadFromStoryboardNamed:(NSString *)name
@@ -66,6 +70,11 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
     mapping[NSStringFromClass(cls)] = @(flag);
 }
 
+
+@import ObjectiveC;
+
+char *const kXXNibOwnerKey = "owner";
+
 @implementation UIView (XXNibBridge)
 
 + (BOOL)xx_shouldApplyNibBridging
@@ -80,7 +89,7 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
 
 - (id)owner
 {
-    return objc_getAssociatedObject(self, "owner");
+    return objc_getAssociatedObject(self, kXXNibOwnerKey);
 }
 
 - (id)awakeAfterUsingCoder:(NSCoder *)aDecoder
@@ -101,12 +110,12 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
         Class ownerClass = [[self class] xx_ownerClass];
         id owner;
         if (ownerClass) {
-            owner = [ownerClass new];
+            owner = [[ownerClass alloc] initWithCoder:aDecoder];
         }
         // Require nib name is equal to class name
         UIView *view = [[self class] xx_loadFromNibWithOwner:owner];
         
-        objc_setAssociatedObject(view, "owner", owner, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(view, kXXNibOwnerKey, owner, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         NSAssert(view, @"View of class [%@] could not load from nib, check whether the view in nib binds the correct class", [[self class] xx_nibID]);
         

@@ -18,6 +18,7 @@
 
 /// Load object of this class from IB file with SAME name
 + (id)xx_loadFromNibWithOwner:(id)owner;
++ (id)xx_loadFromNib; // Nil owner
 
 /// Load UIViewController of this class from given storyboard name
 + (id/*UIViewController*/)xx_loadFromStoryboardNamed:(NSString *)name;
