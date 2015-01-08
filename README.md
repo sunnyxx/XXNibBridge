@@ -23,7 +23,7 @@ Runtime:
 
 2. Put a placeholder view in target IB(xib or storyboard), Set it's class.  
 
-    <img src="http://ww1.sinaimg.cn/large/51530583gw1ei03b0vuzmj20z40a6q4e.jpg" height="500" />  
+    <img src="http://ww1.sinaimg.cn/large/51530583gw1ei03b0vuzmj20z40a6q4e.jpg" width="500" />  
     
 3. Override a class method to turn on bridging.  
 
@@ -38,7 +38,7 @@ Runtime:
     ```
     
 Done:  
-    <img src="http://ww4.sinaimg.cn/large/51530583gw1ei03g01mmej20ga07sjrt.jpg" height="500" />
+    <img src="http://ww4.sinaimg.cn/large/51530583gw1ei03g01mmej20ga07sjrt.jpg" width="500" />
 
 # How it works
 
