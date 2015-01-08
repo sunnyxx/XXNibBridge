@@ -18,10 +18,8 @@
 + (id)xx_loadFromNibWithOwner:(id)owner
 {
     NSArray *objects = [[self xx_nib] instantiateWithOwner:owner options:nil];
-    for (UIView *obj in objects)
-    {
-        if ([obj isMemberOfClass:self])
-        {
+    for (UIView *obj in objects) {
+        if ([obj isMemberOfClass:[self class]]) {
             return obj;
         }
     }
@@ -46,8 +44,7 @@
 static NSMutableDictionary * getIBReplaceFlagMapping()
 {
     static NSMutableDictionary *mapping = nil;
-    if (!mapping)
-    {
+    if (!mapping) {
         mapping = [NSMutableDictionary dictionary];
     }
     return mapping;
@@ -87,15 +84,13 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
 {
     self = [super awakeAfterUsingCoder:aDecoder];
     
-    if (![[self class] xx_shouldApplyNibBridging])
-    {
+    if (![[self class] xx_shouldApplyNibBridging]) {
         return self;
     }
     
     // self will be replaced by object created from nib
     
-    if (!getIBReplaceFlag([self class]))
-    {
+    if (!getIBReplaceFlag([self class])) {
         setIBReplaceFlag([self class], YES);
         
         Class ownerClass = [[self class] xx_ownerClass];
@@ -142,16 +137,30 @@ static void setIBReplaceFlag(Class cls, BOOL flag)
     // from placeholder to real view
     for (NSLayoutConstraint *constraint in placeholderView.constraints)
     {
-        NSLayoutConstraint* newConstraint  = [NSLayoutConstraint constraintWithItem:realView
-                                                 attribute:constraint.firstAttribute
-                                                 relatedBy:constraint.relation
-                                                 toItem:nil // Only first item
-                                                 attribute:constraint.secondAttribute
-                                                 multiplier:constraint.multiplier
-                                                 constant:constraint.constant];
+        NSLayoutConstraint* newConstraint;
+        if (!constraint.secondItem) {
+            newConstraint = [NSLayoutConstraint constraintWithItem:realView
+                                                         attribute:constraint.firstAttribute
+                                                         relatedBy:constraint.relation
+                                                            toItem:nil
+                                                         attribute:constraint.secondAttribute
+                                                        multiplier:constraint.multiplier
+                                                          constant:constraint.constant];
+        }
+        // "Aspect ratio" constaint
+        else if ([constraint.firstItem isEqual:constraint.secondItem]) {
+            newConstraint = [NSLayoutConstraint constraintWithItem:realView
+                                                         attribute:constraint.firstAttribute
+                                                         relatedBy:constraint.relation
+                                                            toItem:realView
+                                                         attribute:constraint.secondAttribute
+                                                        multiplier:constraint.multiplier
+                                                          constant:constraint.constant];
+        }
         newConstraint.shouldBeArchived = constraint.shouldBeArchived;
         newConstraint.priority = constraint.priority;
         [realView addConstraint:newConstraint];
     }
 }
+
 @end

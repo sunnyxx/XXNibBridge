@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5xR-gx-K9P">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="bSe-86-MaO">
+            <objects>
+                <viewController id="5xR-gx-K9P" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oV8-ep-Z6a"/>
+                        <viewControllerLayoutGuide type="bottom" id="UI8-pA-6IH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Alw-p9-2FT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View below loads from &quot;XXDogeView.xib&quot;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yq6-P8-rhM">
+                                <rect key="frame" x="18" y="40" width="284" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1sS-xH-OOX">
+                                <rect key="frame" x="80" y="120" width="160" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="B4D-q8-xyV" customClass="XXDogeView">
+                                <rect key="frame" x="110" y="73" width="100" height="100"/>
+                                <color key="backgroundColor" red="1" green="0.73927552959999998" blue="0.29537078090000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="KfJ-JM-PvV"/>
+                                    <constraint firstAttribute="width" constant="100" id="aF6-td-obr"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View below loads from &quot;XXSarkView.xib&quot;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW3-VH-mvO">
+                                <rect key="frame" x="21" y="193" width="278" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="jAZ-0b-cfS" customClass="XXSarkView">
+                                <rect key="frame" x="85" y="231" width="150" height="200"/>
+                                <color key="backgroundColor" red="0.32780941540000003" green="0.55224929899999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="DFu-i9-7UK"/>
+                                    <constraint firstAttribute="width" constant="150" id="acn-wN-t4h"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="jAZ-0b-cfS" secondAttribute="centerX" id="5E6-Ml-7P7"/>
+                            <constraint firstAttribute="centerX" secondItem="B4D-q8-xyV" secondAttribute="centerX" id="HIh-ra-ug5"/>
+                            <constraint firstAttribute="centerX" secondItem="FW3-VH-mvO" secondAttribute="centerX" id="OFA-Az-TtV"/>
+                            <constraint firstAttribute="centerX" secondItem="Yq6-P8-rhM" secondAttribute="centerX" id="a6R-0B-bH3"/>
+                            <constraint firstItem="Yq6-P8-rhM" firstAttribute="top" secondItem="oV8-ep-Z6a" secondAttribute="bottom" constant="20" id="ciZ-LR-FfF"/>
+                            <constraint firstItem="FW3-VH-mvO" firstAttribute="top" secondItem="B4D-q8-xyV" secondAttribute="bottom" constant="20" id="eQa-Ya-MVI"/>
+                            <constraint firstItem="B4D-q8-xyV" firstAttribute="top" secondItem="Yq6-P8-rhM" secondAttribute="bottom" constant="15" id="g82-Pw-A9c"/>
+                            <constraint firstItem="jAZ-0b-cfS" firstAttribute="top" secondItem="FW3-VH-mvO" secondAttribute="bottom" constant="20" id="pCa-RQ-NSA"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jas-M9-37B" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

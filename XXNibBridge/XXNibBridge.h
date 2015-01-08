@@ -5,7 +5,7 @@
 //  Copyright (c) 2014 sunnyxx. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface NSObject (XXIBLoadingConvenient)
 

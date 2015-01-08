@@ -1,4 +1,0 @@
-XXNibBridge
-===========
-
-XXNibBridge
