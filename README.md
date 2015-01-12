@@ -23,7 +23,7 @@ Runtime:
 
 # How to use
 
-1. Build your class and it's xib file. (Same name required)  
+1. Build your view class and itss xib file. (Same name required)  
 
     <img src="http://ww3.sinaimg.cn/large/51530583gw1ei03dn8rq8j206g036q2z.jpg" height="200" />
 
