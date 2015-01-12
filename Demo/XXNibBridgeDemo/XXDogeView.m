@@ -9,11 +9,29 @@
 #import "XXDogeView.h"
 #import "XXNibBridge.h"
 
+@interface XXDogeView () <XXNibBridge>
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomconstraint;
+
+@end
+
 @implementation XXDogeView
 
-+ (BOOL)xx_shouldApplyNibBridging
+- (void)awakeFromNib
 {
-    return YES;
+    [super awakeFromNib];
+    
+}
+//+ (BOOL)xx_shouldApplyNibBridging
+//{
+//    return YES;
+//}
+- (IBAction)buttonAction:(id)sender
+{
+     
+}
+- (IBAction)fuckMe:(id)sender
+{
+    
 }
 
 @end

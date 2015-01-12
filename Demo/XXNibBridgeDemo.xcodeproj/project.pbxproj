@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48ADAFEE1A5FD274008F2ED8 /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ADAFED1A5FD274008F2ED8 /* XXNibConvention.m */; };
 		48B78BB91A5E382400B662F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B78BB81A5E382400B662F7 /* main.m */; };
 		48B78BC21A5E382400B662F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B78BC01A5E382400B662F7 /* Main.storyboard */; };
 		48B78BC41A5E382400B662F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48B78BC31A5E382400B662F7 /* Images.xcassets */; };
@@ -31,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48ADAFEC1A5FD274008F2ED8 /* XXNibConvention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibConvention.h; sourceTree = "<group>"; };
+		48ADAFED1A5FD274008F2ED8 /* XXNibConvention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibConvention.m; sourceTree = "<group>"; };
 		48B78BB31A5E382400B662F7 /* XXNibBridgeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XXNibBridgeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48B78BB71A5E382400B662F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48B78BB81A5E382400B662F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 			children = (
 				48B78BDD1A5E38AF00B662F7 /* XXNibBridge.h */,
 				48B78BDE1A5E38AF00B662F7 /* XXNibBridge.m */,
+				48ADAFEC1A5FD274008F2ED8 /* XXNibConvention.h */,
+				48ADAFED1A5FD274008F2ED8 /* XXNibConvention.m */,
 			);
 			name = XXNibBridge;
 			path = ../../XXNibBridge;
@@ -249,6 +254,7 @@
 				48B78BDF1A5E38AF00B662F7 /* XXNibBridge.m in Sources */,
 				48B78BE91A5E6B2700B662F7 /* XXDogeView.m in Sources */,
 				48B78BEB1A5E6B2700B662F7 /* XXSarkView.m in Sources */,
+				48ADAFEE1A5FD274008F2ED8 /* XXNibConvention.m in Sources */,
 				48B78BE81A5E6B2700B662F7 /* XXAppDelegate.m in Sources */,
 				48B78BB91A5E382400B662F7 /* main.m in Sources */,
 			);

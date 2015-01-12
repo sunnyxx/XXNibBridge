@@ -5,6 +5,12 @@
       location = "group:XXNibBridge"
       name = "XXNibBridge">
       <FileRef
+         location = "group:XXNibConvention.h">
+      </FileRef>
+      <FileRef
+         location = "group:XXNibConvention.m">
+      </FileRef>
+      <FileRef
          location = "group:XXNibBridge.h">
       </FileRef>
       <FileRef
