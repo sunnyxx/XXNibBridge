@@ -60,8 +60,10 @@
 @interface NSObject (XXNibConventionDeprecated)
 
 /// Load object of this class from IB file with SAME name
-+ (id)xx_loadFromNibWithOwner:(id)owner
++ (id)xx_loadFromNib
 __attribute__((deprecated("Use + xx_instantiateFromNib instead")));
++ (id)xx_loadFromNibWithOwner:(id)owner
+__attribute__((deprecated("Use + xx_instantiateFromNibInBundle:owner: instead")));
 
 /// Load UIViewController of this class from given storyboard name
 + (id/*UIViewController*/)xx_loadFromStoryboardNamed:(NSString *)name

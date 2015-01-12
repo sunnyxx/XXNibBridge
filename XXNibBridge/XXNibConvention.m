@@ -75,6 +75,11 @@
 
 @implementation NSObject (XXNibConventionDeprecated)
 
++ (id)xx_loadFromNib
+{
+    return [self xx_loadFromNibWithOwner:nil];
+}
+
 + (id)xx_loadFromNibWithOwner:(id)owner
 {
     NSArray *objects = [[self xx_nib] instantiateWithOwner:owner options:nil];

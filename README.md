@@ -1,6 +1,12 @@
 XXNibBridge
 ===========
 
+# Installation  
+
+`pod 'XXNibBridge', '~> 2.0'`
+
+or `pod search XXNibBridge` to check
+
 # Overview
 
 `XXNibBridge` bridges `xib` file to storyboards or another xib file  
@@ -25,15 +31,11 @@ Runtime:
 
     <img src="http://ww1.sinaimg.cn/large/51530583gw1ei03b0vuzmj20z40a6q4e.jpg" width="500" />  
     
-3. Override a class method to turn on bridging.  
+3. Conform to <XXNibBridge> and NOTHING to be implemented  
 
     ``` objc
         #import <XXNibBridge.h>
-        @implementation XXDogeView
-        + (BOOL)xx_shouldApplyNibBridging
-        {
-             return YES;
-        }
+        @interface FooView () <XXNibBridge>
         @end
     ```
     
