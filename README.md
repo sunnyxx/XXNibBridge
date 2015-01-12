@@ -35,7 +35,7 @@ Runtime:
 
     ``` objc
         #import <XXNibBridge.h>
-        @interface FooView () <XXNibBridge>
+        @interface XXDogeView () <XXNibBridge>
         @end
     ```
     
