@@ -1,4 +1,5 @@
 // XXNibBridge.h
+// Version 2.0
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -40,7 +41,6 @@
 
 /// Deprecated
 @interface UIView (XXNibBridgeDeprecated)
-
 /// Subclass override it to switch On/Off IB bridging.
 /// default -> NO
 + (BOOL)xx_shouldApplyNibBridging

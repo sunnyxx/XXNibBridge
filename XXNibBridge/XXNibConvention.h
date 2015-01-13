@@ -1,4 +1,5 @@
 // XXNibConveninets.h
+// Version 2.0
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -25,7 +26,7 @@
 @interface NSObject (XXNibConvention)
 
 /// For convinent, using class name for identifier in IB.
-/// etc cell reuse id, storyboard id
+/// etc. cell reuse id, storyboard id
 + (NSString *)xx_nibID;
 
 /// UINib object with same name from main bundle
@@ -35,16 +36,16 @@
 
 @interface UIView (XXNibConvention)
 
-/// Specific `class name` as xib file name, in main bundle, with nil owner
+/// Specific "class name" as xib file name, in main bundle, with nil owner
 ///
 /// Required:
-///     FooView.h, FooView.m, FooView.xib
+///   FooView.h, FooView.m, FooView.xib
 /// Usage:
-///     FooView *view = [FooView xx_instantiateFromNib];
+///   FooView *view = [FooView xx_instantiateFromNib];
 ///
 + (id)xx_instantiateFromNib;
 
-/// Specific `class name` as xib file name
+/// Specific "class name" as xib file name
 /// See above
 + (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner;
 
@@ -52,7 +53,7 @@
 
 @interface UIViewController (XXNibConvention)
 
-/// Specific `class name` as view controller's `storyboard identifier`
+/// Specific "class name" as view controller's "storyboard identifier"
 + (id)xx_instantiateFromStoryboardNamed:(NSString *)name;
 
 @end
