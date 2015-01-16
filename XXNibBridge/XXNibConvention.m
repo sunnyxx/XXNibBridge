@@ -23,6 +23,10 @@
 
 #import "XXNibConvention.h"
 
+#if !__has_feature(objc_arc)
+#error XXNibConvention must use in arc mode.
+#endif
+
 @implementation NSObject (XXNibConvention)
 
 + (NSString *)xx_nibID

@@ -23,6 +23,10 @@
 
 #import "XXNibBridge.h"
 
+#if !__has_feature(objc_arc)
+#error XXNibBridge must use in arc mode.
+#endif
+
 @import ObjectiveC;
 
 static UIView *XXNibBridgeCreateRealViewFromPlaceholderView(UIView *placeholderView)
