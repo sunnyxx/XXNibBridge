@@ -9,8 +9,7 @@
 #import "XXDogeView.h"
 #import "XXNibBridge.h"
 
-@interface XXDogeView () <XXNibBridge>
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomconstraint;
+@interface XXDogeView () <XXNibBridge> // Enable bridging
 
 @end
 
@@ -18,18 +17,10 @@
 
 - (void)awakeFromNib
 {
-    [super awakeFromNib];
     
 }
-//+ (BOOL)xx_shouldApplyNibBridging
-//{
-//    return YES;
-//}
-- (IBAction)buttonAction:(id)sender
-{
-     
-}
-- (IBAction)fuckMe:(id)sender
+
+- (void)dealloc
 {
     
 }

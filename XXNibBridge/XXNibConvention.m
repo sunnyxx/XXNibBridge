@@ -1,5 +1,5 @@
-// XXNibConveninets.m
-// Version 2.0
+// XXNibConvention.m
+// Version 2.1
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //

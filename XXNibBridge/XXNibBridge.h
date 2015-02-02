@@ -1,5 +1,5 @@
 // XXNibBridge.h
-// Version 2.0
+// Version 2.1
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -23,16 +23,14 @@
 
 #import "XXNibConvention.h"
 
-/// Any subclass of UIView that confirms this protocol is considered accept bridging
+/// Any subclass of UIView that conforms to this protocol is considered accept bridging
 /// Usage:
 ///
-///     // In FooView.h
 ///     @interface FooView : UIView <XXNibBridge>
 ///     @end
 ///
 /// Or (Recommended):
 ///
-///     // In FooView.m
 ///     @interface FooView () <XXNibBridge>
 ///     @end
 ///

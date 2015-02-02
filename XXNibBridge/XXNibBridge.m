@@ -1,5 +1,5 @@
 // XXNibBridge.m
-// Version 2.0
+// Version 2.1
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -25,9 +25,100 @@
 
 @import ObjectiveC;
 
-static UIView *XXNibBridgeCreateRealViewFromPlaceholderView(UIView *placeholderView)
+// Placeholder object mapping
+// Using a dictionary mapping (rather than a single BOOL) is because
+// nest UIViews will excuted recursively.
+// Flag on view's class has a problem:
+// Not support nested situation like "FooView.xib" in "FooView.xib"
+
+static NSMutableDictionary *XXNibPlaceholderFlagMapping(void)
 {
-    // Require conform "XXNibConvension"
+    static NSMutableDictionary *placeholderMapping;
+    if (!placeholderMapping) {
+        placeholderMapping = [NSMutableDictionary dictionary];
+    }
+    return placeholderMapping;
+}
+
+static void XXNibPlaceholderSetFlag(Class cls, BOOL flag)
+{
+    XXNibPlaceholderFlagMapping()[NSStringFromClass(cls)] = @(flag);
+}
+
+static BOOL XXNibPlaceholderGetFlag(Class cls)
+{
+    return [XXNibPlaceholderFlagMapping()[NSStringFromClass(cls)] boolValue];
+}
+
+@interface XXNibBridgeImplementation : NSObject
+
+/// our new "- awakeAfterUserCoder:" with "NS_REPLACES_RECEIVER" attribute,
+/// which the original method in NSObject has, by what compiler handles
+/// right ownership for "self" under ARC.
+- (id)hackedAwakeAfterUsingCoder:(NSCoder *)decoder NS_REPLACES_RECEIVER;
+
+@end
+
+@implementation XXNibBridgeImplementation
+
+// Let's hack it
++ (void)load
+{
+    // Add our "- awakeAfterUsingCoder:" to NSObject class.
+    // The original implementation simply returns self.
+    // So, we just replace it, no need to call original method.
+    SEL selector = @selector(awakeAfterUsingCoder:);
+    SEL hackedSelector = @selector(hackedAwakeAfterUsingCoder:);
+    IMP newIMP = [XXNibBridgeImplementation instanceMethodForSelector:hackedSelector];
+    Method method = class_getInstanceMethod([NSObject class], selector);
+    class_replaceMethod([NSObject class], selector, newIMP, method_getTypeEncoding(method));
+}
+
+- (id)hackedAwakeAfterUsingCoder:(NSCoder *)decoder
+{
+    if ([XXNibBridgeImplementation isObjectSupportsNibBridging:self]) {
+        
+        // Flags here is to break recursion
+        if (!XXNibPlaceholderGetFlag([self class])) {
+            XXNibPlaceholderSetFlag([self class], YES);
+            // "self" is placeholder for this moment, replace it
+            return [XXNibBridgeImplementation instantiateRealObjectFromPlaceholderObject:self];
+        }
+        
+        // Reset for next call
+        XXNibPlaceholderSetFlag([self class], NO);
+    }
+    
+    return self;
+}
+
++ (BOOL)isObjectSupportsNibBridging:(id)object
+{
+    // Check whether this class conforms to "<XXNibBridge>"
+    if ([[object class] conformsToProtocol:@protocol(XXNibBridge)]) {
+        return YES;
+    }
+    
+    // Adapter for old version
+    if ([[object class] respondsToSelector:@selector(xx_shouldApplyNibBridging)]) {
+        return [[object class] xx_shouldApplyNibBridging];
+    }
+    
+    return NO;
+}
+
++ (id)instantiateRealObjectFromPlaceholderObject:(id)placeholder
+{
+    // Dispatch to instantiate real object.
+    if ([placeholder isKindOfClass:[UIView class]]) {
+        return [XXNibBridgeImplementation instantiateRealViewFromPlaceholderView:placeholder];
+    } // else will be added for "View Controller bridging"
+    return placeholder;
+}
+
++ (UIView *)instantiateRealViewFromPlaceholderView:(UIView *)placeholderView
+{
+    // Required to conform "XXNibConvension"
     UIView *realView = [[placeholderView class] xx_instantiateFromNib];
     
     // Copy view's basic properties
@@ -35,14 +126,12 @@ static UIView *XXNibBridgeCreateRealViewFromPlaceholderView(UIView *placeholderV
     realView.hidden = placeholderView.hidden;
     realView.tag = placeholderView.tag;
     
-    // AutoresizingMasks follow placeholder view
+    // AutoresizingMasks follow placeholder view's
     realView.autoresizingMask = placeholderView.autoresizingMask;
     realView.translatesAutoresizingMaskIntoConstraints =
     placeholderView.translatesAutoresizingMaskIntoConstraints;
     
-    // Copy autolayout constrains
-    // We only need to copy "self" constraints
-    // etc. "width", "height", "aspect ratio"
+    // Copy autolayout constrains from placeholder view to real view
     if (placeholderView.constraints.count > 0) {
         
         // We only need to copy "self" constraints (like width/height constraints)
@@ -52,6 +141,7 @@ static UIView *XXNibBridgeCreateRealViewFromPlaceholderView(UIView *placeholderV
             NSLayoutConstraint* newConstraint;
             
             // "Height" or "Width" constraint
+            // "self" as its first item, no second item
             if (!constraint.secondItem) {
                 newConstraint =
                 [NSLayoutConstraint constraintWithItem:realView
@@ -63,6 +153,7 @@ static UIView *XXNibBridgeCreateRealViewFromPlaceholderView(UIView *placeholderV
                                               constant:constraint.constant];
             }
             // "Aspect ratio" constraint
+            // "self" as its first AND second item
             else if ([constraint.firstItem isEqual:constraint.secondItem]) {
                 newConstraint =
                 [NSLayoutConstraint constraintWithItem:realView
@@ -89,78 +180,7 @@ static UIView *XXNibBridgeCreateRealViewFromPlaceholderView(UIView *placeholderV
     return realView;
 }
 
-// Placeholder object mapping
-// Using a dictionary mapping (rather than a single BOOL) is because
-// nest UIViews will excuted recursively
-// Flag on view's class has a problem:
-// Not support nested situation like "FooView.xib" in "FooView.xib"
-
-static NSMutableDictionary *XXNibPlaceholderFlagMapping(void)
-{
-    static NSMutableDictionary *placeholderMapping;
-    if (!placeholderMapping) {
-        placeholderMapping = [NSMutableDictionary dictionary];
-    }
-    return placeholderMapping;
-}
-
-static void XXNibPlaceholderSetFlag(Class cls, BOOL flag)
-{
-    XXNibPlaceholderFlagMapping()[NSStringFromClass(cls)] = @(flag);
-}
-
-static BOOL XXNibPlaceholderGetFlag(Class cls)
-{
-    return [XXNibPlaceholderFlagMapping()[NSStringFromClass(cls)] boolValue];
-}
-
-// Using the "constructor" function attribute, to make it be executed
-// after all objc runtime setups (after all +load methods)
-__attribute__((constructor)) static void XXNibBridgeHackAwakeAfterUsingCoder(void)
-{
-    // New "-awakeAfterUsingCoder:" body
-    // Important:
-    //   This method is declared appending with "NS_REPLACES_RECEIVER" attribute,
-    //   it changes memory management ownership of return value. So our block version
-    //   has to obey it, looks weird, must put this attribute in block's declaration.
-    id (^newIMPBlock)(id, NSCoder *) NS_REPLACES_RECEIVER =
-    ^id (UIView *self, __unused NSCoder *decoder) NS_REPLACES_RECEIVER {
-        
-        // Check whether conform to "<XXNibBridge>"
-        if (![self.class conformsToProtocol:@protocol(XXNibBridge)]) {
-            
-            // Adapter for old version
-            if ([(id)self.class respondsToSelector:@selector(xx_shouldApplyNibBridging)]) {
-                BOOL should = [self.class xx_shouldApplyNibBridging];
-                if (!should) {
-                    return self;
-                }
-            }
-        }
-        
-        // First time reach here, "self" is the placeholder view,
-        // We need replace "self" to real view that creates from xib file.
-        // When +xx_instantiateFromNib called, reaches here again.
-        // This flag will break recursion
-        if (!XXNibPlaceholderGetFlag(self.class)) {
-            XXNibPlaceholderSetFlag(self.class, YES);
-            UIView *realView = XXNibBridgeCreateRealViewFromPlaceholderView(self);
-            return realView;
-        }
-        
-        // Reset for next call
-        XXNibPlaceholderSetFlag(self.class, NO);
-        
-        return self;
-    };
-    
-    // Add new method to UIView
-    SEL selector = @selector(awakeAfterUsingCoder:);
-    Method method = class_getInstanceMethod([UIView class], selector);
-    IMP newIMP = imp_implementationWithBlock(newIMPBlock);
-    const char *typeEncoding = method_getTypeEncoding(method);
-    class_addMethod([UIView class], selector, newIMP, typeEncoding);
-}
+@end
 
 // Deprecated
 @implementation UIView (XXNibBridgeDeprecated)

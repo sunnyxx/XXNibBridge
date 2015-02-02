@@ -19,6 +19,11 @@
 		48B78BEA1A5E6B2700B662F7 /* XXDogeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B78BE41A5E6B2700B662F7 /* XXDogeView.xib */; };
 		48B78BEB1A5E6B2700B662F7 /* XXSarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B78BE61A5E6B2700B662F7 /* XXSarkView.m */; };
 		48B78BEC1A5E6B2700B662F7 /* XXSarkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B78BE71A5E6B2700B662F7 /* XXSarkView.xib */; };
+		48FAE4851A67AE33003F1D6B /* XXXibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAE4831A67AE33003F1D6B /* XXXibViewController.m */; };
+		48FAE4861A67AE33003F1D6B /* XXXibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48FAE4841A67AE33003F1D6B /* XXXibViewController.xib */; };
+		48FAE48A1A67AE91003F1D6B /* AnotherModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48FAE4891A67AE91003F1D6B /* AnotherModule.storyboard */; };
+		48FAE48D1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAE48C1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m */; };
+		48FAE4901A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAE48F1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,14 @@
 		48B78BE51A5E6B2700B662F7 /* XXSarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXSarkView.h; sourceTree = "<group>"; };
 		48B78BE61A5E6B2700B662F7 /* XXSarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXSarkView.m; sourceTree = "<group>"; };
 		48B78BE71A5E6B2700B662F7 /* XXSarkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXSarkView.xib; sourceTree = "<group>"; };
+		48FAE4821A67AE33003F1D6B /* XXXibViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXXibViewController.h; sourceTree = "<group>"; };
+		48FAE4831A67AE33003F1D6B /* XXXibViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXXibViewController.m; sourceTree = "<group>"; };
+		48FAE4841A67AE33003F1D6B /* XXXibViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXXibViewController.xib; sourceTree = "<group>"; };
+		48FAE4891A67AE91003F1D6B /* AnotherModule.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnotherModule.storyboard; sourceTree = "<group>"; };
+		48FAE48B1A67AEB7003F1D6B /* XXStoryboardInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXStoryboardInitialViewController.h; sourceTree = "<group>"; };
+		48FAE48C1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXStoryboardInitialViewController.m; sourceTree = "<group>"; };
+		48FAE48E1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXStoryboardCreateByIDViewController.h; sourceTree = "<group>"; };
+		48FAE48F1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXStoryboardCreateByIDViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,16 +109,12 @@
 			children = (
 				48B78BE01A5E6B2700B662F7 /* XXAppDelegate.h */,
 				48B78BE11A5E6B2700B662F7 /* XXAppDelegate.m */,
-				48B78BE21A5E6B2700B662F7 /* XXDogeView.h */,
-				48B78BE31A5E6B2700B662F7 /* XXDogeView.m */,
-				48B78BE41A5E6B2700B662F7 /* XXDogeView.xib */,
-				48B78BE51A5E6B2700B662F7 /* XXSarkView.h */,
-				48B78BE61A5E6B2700B662F7 /* XXSarkView.m */,
-				48B78BE71A5E6B2700B662F7 /* XXSarkView.xib */,
-				48B78BDC1A5E38AF00B662F7 /* XXNibBridge */,
 				48B78BC01A5E382400B662F7 /* Main.storyboard */,
 				48B78BC31A5E382400B662F7 /* Images.xcassets */,
 				48B78BC51A5E382400B662F7 /* LaunchScreen.xib */,
+				48FAE4881A67AE68003F1D6B /* Bridge view controllers */,
+				48FAE4871A67AE3E003F1D6B /* Bridge views */,
+				48B78BDC1A5E38AF00B662F7 /* XXNibBridge Classes */,
 				48B78BB61A5E382400B662F7 /* Supporting Files */,
 			);
 			path = XXNibBridgeDemo;
@@ -137,7 +146,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		48B78BDC1A5E38AF00B662F7 /* XXNibBridge */ = {
+		48B78BDC1A5E38AF00B662F7 /* XXNibBridge Classes */ = {
 			isa = PBXGroup;
 			children = (
 				48B78BDD1A5E38AF00B662F7 /* XXNibBridge.h */,
@@ -145,8 +154,36 @@
 				48ADAFEC1A5FD274008F2ED8 /* XXNibConvention.h */,
 				48ADAFED1A5FD274008F2ED8 /* XXNibConvention.m */,
 			);
-			name = XXNibBridge;
+			name = "XXNibBridge Classes";
 			path = ../../XXNibBridge;
+			sourceTree = "<group>";
+		};
+		48FAE4871A67AE3E003F1D6B /* Bridge views */ = {
+			isa = PBXGroup;
+			children = (
+				48B78BE21A5E6B2700B662F7 /* XXDogeView.h */,
+				48B78BE31A5E6B2700B662F7 /* XXDogeView.m */,
+				48B78BE41A5E6B2700B662F7 /* XXDogeView.xib */,
+				48B78BE51A5E6B2700B662F7 /* XXSarkView.h */,
+				48B78BE61A5E6B2700B662F7 /* XXSarkView.m */,
+				48B78BE71A5E6B2700B662F7 /* XXSarkView.xib */,
+			);
+			name = "Bridge views";
+			sourceTree = "<group>";
+		};
+		48FAE4881A67AE68003F1D6B /* Bridge view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				48FAE4821A67AE33003F1D6B /* XXXibViewController.h */,
+				48FAE4831A67AE33003F1D6B /* XXXibViewController.m */,
+				48FAE4841A67AE33003F1D6B /* XXXibViewController.xib */,
+				48FAE48B1A67AEB7003F1D6B /* XXStoryboardInitialViewController.h */,
+				48FAE48C1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m */,
+				48FAE48E1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.h */,
+				48FAE48F1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m */,
+				48FAE4891A67AE91003F1D6B /* AnotherModule.storyboard */,
+			);
+			name = "Bridge view controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +268,9 @@
 			files = (
 				48B78BC21A5E382400B662F7 /* Main.storyboard in Resources */,
 				48B78BEA1A5E6B2700B662F7 /* XXDogeView.xib in Resources */,
+				48FAE4861A67AE33003F1D6B /* XXXibViewController.xib in Resources */,
 				48B78BC71A5E382400B662F7 /* LaunchScreen.xib in Resources */,
+				48FAE48A1A67AE91003F1D6B /* AnotherModule.storyboard in Resources */,
 				48B78BC41A5E382400B662F7 /* Images.xcassets in Resources */,
 				48B78BEC1A5E6B2700B662F7 /* XXSarkView.xib in Resources */,
 			);
@@ -251,10 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48FAE4901A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m in Sources */,
 				48B78BDF1A5E38AF00B662F7 /* XXNibBridge.m in Sources */,
 				48B78BE91A5E6B2700B662F7 /* XXDogeView.m in Sources */,
 				48B78BEB1A5E6B2700B662F7 /* XXSarkView.m in Sources */,
 				48ADAFEE1A5FD274008F2ED8 /* XXNibConvention.m in Sources */,
+				48FAE48D1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m in Sources */,
+				48FAE4851A67AE33003F1D6B /* XXXibViewController.m in Sources */,
 				48B78BE81A5E6B2700B662F7 /* XXAppDelegate.m in Sources */,
 				48B78BB91A5E382400B662F7 /* main.m in Sources */,
 			);

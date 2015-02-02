@@ -9,11 +9,20 @@
 #import "XXSarkView.h"
 #import "XXNibBridge.h"
 
+@interface XXSarkView () <XXNibBridge>
+
+@end
+
 @implementation XXSarkView
 
-+ (BOOL)xx_shouldApplyNibBridging
+- (void)awakeFromNib
 {
-    return YES;
+    
+}
+
+- (void)dealloc
+{
+    
 }
 
 @end
