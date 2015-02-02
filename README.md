@@ -3,7 +3,7 @@ XXNibBridge
 
 # Installation  
 
-`pod 'XXNibBridge', '~> 2.0'`
+`pod 'XXNibBridge', '~> 2.1'`
 
 or `pod search XXNibBridge` to check
 
