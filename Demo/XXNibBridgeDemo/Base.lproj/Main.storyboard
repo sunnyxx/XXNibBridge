@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="u9s-iD-1VM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="u9s-iD-1VM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--XXNibBridge Demo-->
@@ -82,7 +82,7 @@
         <!--.xib Bridge-->
         <scene sceneID="bSe-86-MaO">
             <objects>
-                <viewController id="5xR-gx-K9P" sceneMemberID="viewController">
+                <viewController id="5xR-gx-K9P" customClass="XXBridgeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oV8-ep-Z6a"/>
                         <viewControllerLayoutGuide type="bottom" id="UI8-pA-6IH"/>
@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View below loads from &quot;XXDogeView.xib&quot;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yq6-P8-rhM">
-                                <rect key="frame" x="18.5" y="84" width="283.5" height="18"/>
+                                <rect key="frame" x="19" y="84" width="284" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -136,6 +136,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title=".xib Bridge" id="o2x-Bv-P5g"/>
+                    <connections>
+                        <outlet property="dogeView" destination="B4D-q8-xyV" id="zhd-uf-KbW"/>
+                        <outlet property="dogeViewHeightConstraint" destination="KfJ-JM-PvV" id="fGx-Ye-cG9"/>
+                        <outlet property="dogeViewWidthConstraint" destination="aF6-td-obr" id="Zeq-5E-9kn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jas-M9-37B" sceneMemberID="firstResponder"/>
             </objects>
