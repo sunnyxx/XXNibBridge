@@ -24,6 +24,7 @@
 		48FAE48A1A67AE91003F1D6B /* AnotherModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48FAE4891A67AE91003F1D6B /* AnotherModule.storyboard */; };
 		48FAE48D1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAE48C1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m */; };
 		48FAE4901A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FAE48F1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m */; };
+		9CAC5F491B8DBCEC00B7F7A6 /* XXBridgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC5F481B8DBCEC00B7F7A6 /* XXBridgeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		48FAE48C1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXStoryboardInitialViewController.m; sourceTree = "<group>"; };
 		48FAE48E1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXStoryboardCreateByIDViewController.h; sourceTree = "<group>"; };
 		48FAE48F1A67AEE7003F1D6B /* XXStoryboardCreateByIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXStoryboardCreateByIDViewController.m; sourceTree = "<group>"; };
+		9CAC5F471B8DBCEC00B7F7A6 /* XXBridgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXBridgeViewController.h; sourceTree = "<group>"; };
+		9CAC5F481B8DBCEC00B7F7A6 /* XXBridgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXBridgeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 			children = (
 				48B78BE01A5E6B2700B662F7 /* XXAppDelegate.h */,
 				48B78BE11A5E6B2700B662F7 /* XXAppDelegate.m */,
+				9CAC5F471B8DBCEC00B7F7A6 /* XXBridgeViewController.h */,
+				9CAC5F481B8DBCEC00B7F7A6 /* XXBridgeViewController.m */,
 				48B78BC01A5E382400B662F7 /* Main.storyboard */,
 				48B78BC31A5E382400B662F7 /* Images.xcassets */,
 				48B78BC51A5E382400B662F7 /* LaunchScreen.xib */,
@@ -295,6 +300,7 @@
 				48B78BE91A5E6B2700B662F7 /* XXDogeView.m in Sources */,
 				48B78BEB1A5E6B2700B662F7 /* XXSarkView.m in Sources */,
 				48ADAFEE1A5FD274008F2ED8 /* XXNibConvention.m in Sources */,
+				9CAC5F491B8DBCEC00B7F7A6 /* XXBridgeViewController.m in Sources */,
 				48FAE48D1A67AEB7003F1D6B /* XXStoryboardInitialViewController.m in Sources */,
 				48FAE4851A67AE33003F1D6B /* XXXibViewController.m in Sources */,
 				48B78BE81A5E6B2700B662F7 /* XXAppDelegate.m in Sources */,

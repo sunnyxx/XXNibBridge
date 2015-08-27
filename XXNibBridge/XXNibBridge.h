@@ -36,7 +36,9 @@
 ///
 @protocol XXNibBridge <NSObject>
 @end
-
+@interface XXNibBridge : NSObject
++ (void)bridgeInstantiateConstraints:(NSArray *)constraints Target:(id)target ForSubview:(UIView *)subview;
+@end
 /// Deprecated
 @interface UIView (XXNibBridgeDeprecated)
 /// Subclass override it to switch On/Off IB bridging.

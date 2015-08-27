@@ -136,13 +136,15 @@ static BOOL XXNibPlaceholderGetFlag(Class cls)
         
         // We only need to copy "self" constraints (like width/height constraints)
         // from placeholder to real view
+        NSMutableArray *layouts = [@[] mutableCopy];
         for (NSLayoutConstraint *constraint in placeholderView.constraints) {
             
             NSLayoutConstraint* newConstraint;
             
             // "Height" or "Width" constraint
             // "self" as its first item, no second item
-            if (!constraint.secondItem) {
+            // firstItem can't be nil
+            if (!constraint.secondItem && [constraint.firstItem isKindOfClass:[realView class]]) {
                 newConstraint =
                 [NSLayoutConstraint constraintWithItem:realView
                                              attribute:constraint.firstAttribute
@@ -173,15 +175,49 @@ static BOOL XXNibPlaceholderGetFlag(Class cls)
                     newConstraint.identifier = constraint.identifier;
                 }
                 [realView addConstraint:newConstraint];
+                [layouts addObject:constraint];
+                [layouts addObject:newConstraint];
             }
         }
+        objc_setAssociatedObject(realView, @"layouts", layouts, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return realView;
 }
 
-@end
 
+@end
+@implementation XXNibBridge
++ (void)bridgeInstantiateConstraints:(NSArray *)constraints Target:(id)target ForSubview:(UIView *)subview{
+    for (NSString *ivarName in constraints) {
+       
+        NSMutableArray *layouts = objc_getAssociatedObject(subview, @"layouts");
+        [layouts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            if ([XXNibBridge hasVariableWithClass:[target class] varName:ivarName]) {
+                id value = [target valueForKey:ivarName];
+                if ([obj isEqual: value] && idx%2 == 0) {
+                    [target setValue:layouts[idx+1] forKey:ivarName];
+                    *stop = YES;
+                }
+            }
+            
+        }];
+    }
+}
++ (BOOL)hasVariableWithClass:(Class) myClass varName:(NSString *)name{
+    unsigned int outCount, i;
+    Ivar *ivars = class_copyIvarList(myClass, &outCount);
+    for (i = 0; i < outCount; i++) {
+        Ivar property = ivars[i];
+        NSString *keyName = [NSString stringWithCString:ivar_getName(property) encoding:NSUTF8StringEncoding];
+        keyName = [keyName stringByReplacingOccurrencesOfString:@"_" withString:@""];
+        if ([keyName isEqualToString:name]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+@end
 // Deprecated
 @implementation UIView (XXNibBridgeDeprecated)
 
