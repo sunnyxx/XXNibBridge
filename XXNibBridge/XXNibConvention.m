@@ -23,36 +23,47 @@
 
 #import "XXNibConvention.h"
 
-@implementation NSObject (XXNibConvention)
-
-+ (NSString *)xx_nibID
-{
-    return NSStringFromClass([self class]);
-}
-
-+ (UINib *)xx_nib
-{
-    return [UINib nibWithNibName:NSStringFromClass([self class]) bundle:nil];
-}
-
-@end
-
 @implementation UIView (XXNibConvention)
 
-+ (id)xx_instantiateFromNib
-{
-    return [self xx_instantiateFromNibInBundle:nil owner:nil];
+#pragma mark - XXNibConvention
+
++ (NSString *)nibid {
+    return NSStringFromClass(self);
 }
 
-+ (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner
-{
-    NSArray *views = [[self xx_nib] instantiateWithOwner:owner options:nil];
++ (UINib *)nib {
+    return [UINib nibWithNibName:self.nibid bundle:nil];
+}
+
++ (id)xx_instantiateFromNib {
+    NSArray *views = [self.nib instantiateWithOwner:nil options:nil];
     for (UIView *view in views) {
-        if ([view isMemberOfClass:[self class]]) {
+        if ([view isMemberOfClass:self.class]) {
             return view;
         }
     }
-    NSAssert(NO, @"Expect file: %@", [NSString stringWithFormat:@"%@.xib", NSStringFromClass([self class])]);
+    NSAssert(NO, @"Expect file: %@", [NSString stringWithFormat:@"%@.xib", self.nibid]);
+    return nil;
+}
+
+#pragma mark - XXNibConventionDeprecated
+
++ (NSString *)xx_nibID {
+    return self.nibid;
+}
+
++ (UINib *)xx_nib {
+    return self.nib;
+}
+
++ (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner {
+    NSArray *views = [self.xx_nib instantiateWithOwner:owner options:nil];
+    for (UIView *view in views) {
+        if ([view isMemberOfClass:self.class]) {
+            return view;
+        }
+    }
+    NSAssert(NO, @"Expect file: %@", [NSString stringWithFormat:@"%@.xib", self.xx_nibID]);
     return nil;
 }
 
@@ -60,42 +71,11 @@
 
 @implementation UIViewController (XXNibConvention)
 
-+ (id)xx_instantiateFromStoryboardNamed:(NSString *)name
-{
++ (id)xx_instantiateFromStoryboardNamed:(NSString *)name {
     NSParameterAssert(name.length > 0);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:name bundle:nil];
     NSAssert(storyboard != nil, @"Expect file: %@", [NSString stringWithFormat:@"%@.storyboard", name]);
-    if (!storyboard) {
-        return nil;
-    }
-    id viewController = [storyboard instantiateViewControllerWithIdentifier:[self xx_nibID]];
-    return viewController;
-}
-
-@end
-
-@implementation NSObject (XXNibConventionDeprecated)
-
-+ (id)xx_loadFromNib
-{
-    return [self xx_loadFromNibWithOwner:nil];
-}
-
-+ (id)xx_loadFromNibWithOwner:(id)owner
-{
-    NSArray *objects = [[self xx_nib] instantiateWithOwner:owner options:nil];
-    for (UIView *obj in objects) {
-        if ([obj isMemberOfClass:[self class]]) {
-            return obj;
-        }
-    }
-    return nil;
-}
-
-+ (id)xx_loadFromStoryboardNamed:(NSString *)name
-{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:name bundle:nil];
-    return [sb instantiateViewControllerWithIdentifier:[self xx_nibID]];
+    return [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self)];
 }
 
 @end

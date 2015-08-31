@@ -21,22 +21,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
-@interface NSObject (XXNibConvention)
+@protocol XXNibConvention <NSObject>
 
-/// For convinent, using class name for identifier in IB.
-/// etc. cell reuse id, storyboard id
-+ (NSString *)xx_nibID;
+/// Class name by convention.
++ (NSString *)nibid;
 
-/// UINib object with same name from main bundle
-+ (UINib *)xx_nib;
+/// Nib file in main bundle with class name by convention.
++ (UINib *)nib;
 
-@end
-
-@interface UIView (XXNibConvention)
-
-/// Specific "class name" as xib file name, in main bundle, with nil owner
+/// Instantiate from `+ nib` with no owner, no options.
 ///
 /// Required:
 ///   FooView.h, FooView.m, FooView.xib
@@ -45,29 +40,27 @@
 ///
 + (id)xx_instantiateFromNib;
 
-/// Specific "class name" as xib file name
-/// See above
+@end
+
+@protocol XXNibConventionDeprecated <NSObject>
+
+/// See `+ nibid`, I don't like this selector.
++ (NSString *)xx_nibID;
+
+/// See `+ nib`, I don't like this selector.
++ (UINib *)xx_nib;
+
+/// See `+ xx_instantiateFromNib` but with owner.
 + (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner;
 
 @end
 
-@interface UIViewController (XXNibConvention)
-
-/// Specific "class name" as view controller's "storyboard identifier"
-+ (id)xx_instantiateFromStoryboardNamed:(NSString *)name;
-
+@interface UIView (XXNibConvention) <XXNibConvention, XXNibConventionDeprecated>
 @end
 
-@interface NSObject (XXNibConventionDeprecated)
+@interface UIViewController (XXNibConvention)
 
-/// Load object of this class from IB file with SAME name
-+ (id)xx_loadFromNib
-__attribute__((deprecated("Use + xx_instantiateFromNib instead")));
-+ (id)xx_loadFromNibWithOwner:(id)owner
-__attribute__((deprecated("Use + xx_instantiateFromNibInBundle:owner: instead")));
-
-/// Load UIViewController of this class from given storyboard name
-+ (id/*UIViewController*/)xx_loadFromStoryboardNamed:(NSString *)name
-__attribute__((deprecated("Use + xx_instantiateFromStoryboardNamed: instead")));
+/// Instantiate from given storyboard which class name as its `storyboard identifier`
++ (id)xx_instantiateFromStoryboardNamed:(NSString *)name;
 
 @end

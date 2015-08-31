@@ -23,25 +23,11 @@
 
 #import "XXNibConvention.h"
 
-/// Any subclass of UIView that conforms to this protocol is considered accept bridging
+/// Any subclass of UIView that conforms to this protocol is considered accept nib bridge.
 /// Usage:
-///
-///     @interface FooView : UIView <XXNibBridge>
-///     @end
-///
-/// Or (Recommended):
 ///
 ///     @interface FooView () <XXNibBridge>
 ///     @end
 ///
-@protocol XXNibBridge <NSObject>
-@end
-
-/// Deprecated
-@interface UIView (XXNibBridgeDeprecated)
-/// Subclass override it to switch On/Off IB bridging.
-/// default -> NO
-+ (BOOL)xx_shouldApplyNibBridging
-__attribute__((deprecated("Use <XXNibBridge> instead")));
-
+@protocol XXNibBridge <XXNibConvention>
 @end

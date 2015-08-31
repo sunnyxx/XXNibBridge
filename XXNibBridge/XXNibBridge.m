@@ -22,172 +22,66 @@
 // THE SOFTWARE.
 
 #import "XXNibBridge.h"
-
-@import ObjectiveC;
-
-// Placeholder object mapping
-// Using a dictionary mapping (rather than a single BOOL) is because
-// nest UIViews will excuted recursively.
-// Flag on view's class has a problem:
-// Not support nested situation like "FooView.xib" in "FooView.xib"
-
-static NSMutableDictionary *XXNibPlaceholderFlagMapping(void)
-{
-    static NSMutableDictionary *placeholderMapping;
-    if (!placeholderMapping) {
-        placeholderMapping = [NSMutableDictionary dictionary];
-    }
-    return placeholderMapping;
-}
-
-static void XXNibPlaceholderSetFlag(Class cls, BOOL flag)
-{
-    XXNibPlaceholderFlagMapping()[NSStringFromClass(cls)] = @(flag);
-}
-
-static BOOL XXNibPlaceholderGetFlag(Class cls)
-{
-    return [XXNibPlaceholderFlagMapping()[NSStringFromClass(cls)] boolValue];
-}
+#import <objc/runtime.h>
 
 @interface XXNibBridgeImplementation : NSObject
-
-/// our new "- awakeAfterUserCoder:" with "NS_REPLACES_RECEIVER" attribute,
-/// which the original method in NSObject has, by what compiler handles
-/// right ownership for "self" under ARC.
+// It must have "NS_REPLACES_RECEIVER" attribute for right ownership for "self" under ARC.
 - (id)hackedAwakeAfterUsingCoder:(NSCoder *)decoder NS_REPLACES_RECEIVER;
-
 @end
 
 @implementation XXNibBridgeImplementation
 
-// Let's hack it
-+ (void)load
-{
-    // Add our "- awakeAfterUsingCoder:" to NSObject class.
-    // The original implementation simply returns self.
-    // So, we just replace it, no need to call original method.
-    SEL selector = @selector(awakeAfterUsingCoder:);
-    SEL hackedSelector = @selector(hackedAwakeAfterUsingCoder:);
-    IMP newIMP = [XXNibBridgeImplementation instanceMethodForSelector:hackedSelector];
-    Method method = class_getInstanceMethod([NSObject class], selector);
-    class_replaceMethod([NSObject class], selector, newIMP, method_getTypeEncoding(method));
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SEL originalSelector = @selector(awakeAfterUsingCoder:);
+        SEL swizzledSelector = @selector(hackedAwakeAfterUsingCoder:);
+        Method originalMethod = class_getInstanceMethod(UIView.class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);
+        if (class_addMethod(UIView.class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
+            class_replaceMethod(UIView.class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
 }
 
-- (id)hackedAwakeAfterUsingCoder:(NSCoder *)decoder
-{
-    if ([XXNibBridgeImplementation isObjectSupportsNibBridging:self]) {
-        
-        // Flags here is to break recursion
-        if (!XXNibPlaceholderGetFlag([self class])) {
-            XXNibPlaceholderSetFlag([self class], YES);
-            // "self" is placeholder for this moment, replace it
-            return [XXNibBridgeImplementation instantiateRealObjectFromPlaceholderObject:self];
-        }
-        
-        // Reset for next call
-        XXNibPlaceholderSetFlag([self class], NO);
+- (id)hackedAwakeAfterUsingCoder:(NSCoder *)decoder {
+    if ([self.class conformsToProtocol:@protocol(XXNibBridge)] && ((UIView *)self).subviews.count == 0) {
+        // "self" is placeholder view for this moment, replace it.
+        return [XXNibBridgeImplementation instantiateRealViewFromPlaceholder:(UIView *)self];
     }
-    
     return self;
 }
 
-+ (BOOL)isObjectSupportsNibBridging:(id)object
-{
-    // Check whether this class conforms to "<XXNibBridge>"
-    if ([[object class] conformsToProtocol:@protocol(XXNibBridge)]) {
-        return YES;
-    }
++ (UIView *)instantiateRealViewFromPlaceholder:(UIView *)placeholderView {
     
-    // Adapter for old version
-    if ([[object class] respondsToSelector:@selector(xx_shouldApplyNibBridging)]) {
-        return [[object class] xx_shouldApplyNibBridging];
-    }
-    
-    return NO;
-}
-
-+ (id)instantiateRealObjectFromPlaceholderObject:(id)placeholder
-{
-    // Dispatch to instantiate real object.
-    if ([placeholder isKindOfClass:[UIView class]]) {
-        return [XXNibBridgeImplementation instantiateRealViewFromPlaceholderView:placeholder];
-    } // else will be added for "View Controller bridging"
-    return placeholder;
-}
-
-+ (UIView *)instantiateRealViewFromPlaceholderView:(UIView *)placeholderView
-{
-    // Required to conform "XXNibConvension"
+    // Required to conform "XXNibConvension".
     UIView *realView = [[placeholderView class] xx_instantiateFromNib];
-    
-    // Copy view's basic properties
-    realView.frame = placeholderView.frame;
-    realView.hidden = placeholderView.hidden;
+
     realView.tag = placeholderView.tag;
-    
-    // AutoresizingMasks follow placeholder view's
+    realView.frame = placeholderView.frame;
+    realView.bounds = placeholderView.bounds;
+    realView.hidden = placeholderView.hidden;
+    realView.clipsToBounds = placeholderView.clipsToBounds;
     realView.autoresizingMask = placeholderView.autoresizingMask;
-    realView.translatesAutoresizingMaskIntoConstraints =
-    placeholderView.translatesAutoresizingMaskIntoConstraints;
+    realView.userInteractionEnabled = placeholderView.userInteractionEnabled;
+    realView.translatesAutoresizingMaskIntoConstraints = placeholderView.translatesAutoresizingMaskIntoConstraints;
     
-    // Copy autolayout constrains from placeholder view to real view
-    if (placeholderView.constraints.count > 0) {
-        
-        // We only need to copy "self" constraints (like width/height constraints)
-        // from placeholder to real view
-        for (NSLayoutConstraint *constraint in placeholderView.constraints) {
-            
-            NSLayoutConstraint* newConstraint;
-            
-            // "Height" or "Width" constraint
-            // "self" as its first item, no second item
-            if (!constraint.secondItem) {
-                newConstraint =
-                [NSLayoutConstraint constraintWithItem:realView
-                                             attribute:constraint.firstAttribute
-                                             relatedBy:constraint.relation
-                                                toItem:nil
-                                             attribute:constraint.secondAttribute
-                                            multiplier:constraint.multiplier
-                                              constant:constraint.constant];
-            }
-            // "Aspect ratio" constraint
-            // "self" as its first AND second item
-            else if ([constraint.firstItem isEqual:constraint.secondItem]) {
-                newConstraint =
-                [NSLayoutConstraint constraintWithItem:realView
-                                             attribute:constraint.firstAttribute
-                                             relatedBy:constraint.relation
-                                                toItem:realView
-                                             attribute:constraint.secondAttribute
-                                            multiplier:constraint.multiplier
-                                              constant:constraint.constant];
-            }
-            
-            // Copy properties to new constraint
-            if (newConstraint) {
-                newConstraint.shouldBeArchived = constraint.shouldBeArchived;
-                newConstraint.priority = constraint.priority;
-                if ([UIDevice currentDevice].systemVersion.floatValue >= 7.0f) {
-                    newConstraint.identifier = constraint.identifier;
-                }
-                [realView addConstraint:newConstraint];
-            }
+    // Copy autolayout constrains.
+    for (NSLayoutConstraint *constraint in placeholderView.constraints) {
+        if (!constraint.secondItem) {
+            // "Height" or "Width" constraint.
+            [constraint setValue:realView forKey:@"firstItem"];
+            [realView addConstraint:constraint];
+        } else if ([constraint.firstItem isEqual:constraint.secondItem]) {
+            // "Aspect Ratio" constraint.
+            [constraint setValue:realView forKey:@"firstItem"];
+            [constraint setValue:realView forKey:@"secondItem"];
+            [realView addConstraint:constraint];
         }
     }
-    
     return realView;
-}
-
-@end
-
-// Deprecated
-@implementation UIView (XXNibBridgeDeprecated)
-
-+ (BOOL)xx_shouldApplyNibBridging
-{
-    return NO;
 }
 
 @end
