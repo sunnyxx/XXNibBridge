@@ -6,46 +6,43 @@
     </dependencies>
     <scenes>
         <!--XXNibBridge Demo-->
-        <scene sceneID="etv-dM-OIH">
+        <scene sceneID="C79-fc-gWx">
             <objects>
-                <tableViewController id="cv8-n1-HF1" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4cY-MR-SRb">
+                <viewController id="bwD-Uw-tzX" customClass="XXMainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vd2-Lw-wzY"/>
+                        <viewControllerLayoutGuide type="bottom" id="HWJ-uD-YSw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ijO-uL-Rkh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z3F-i9-6i3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bwD-Uw-tzX" id="nYC-Hc-4tR"/>
+                                    <outlet property="delegate" destination="bwD-Uw-tzX" id="Scj-eS-7Zz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection headerTitle="Bridge views" id="nAQ-f2-occ">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="kmT-wS-Qpl" style="IBUITableViewCellStyleDefault" id="b7F-Q6-59Y">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b7F-Q6-59Y" id="fbc-Ls-h2X">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="child xib -&gt; xib / storyboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kmT-wS-Qpl">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="5xR-gx-K9P" kind="push" id="NbJ-2v-GaX"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="cv8-n1-HF1" id="A6u-N6-ONz"/>
-                            <outlet property="delegate" destination="cv8-n1-HF1" id="RzB-Jt-oBr"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="XXNibBridge Demo" id="er2-Co-XDZ"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YOa-su-hfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="HWJ-uD-YSw" firstAttribute="top" secondItem="z3F-i9-6i3" secondAttribute="bottom" id="3HP-LT-CsM"/>
+                            <constraint firstItem="z3F-i9-6i3" firstAttribute="top" secondItem="ijO-uL-Rkh" secondAttribute="top" id="UhD-8Z-oJV"/>
+                            <constraint firstItem="z3F-i9-6i3" firstAttribute="leading" secondItem="ijO-uL-Rkh" secondAttribute="leading" id="gKm-wm-IcE"/>
+                            <constraint firstAttribute="trailing" secondItem="z3F-i9-6i3" secondAttribute="trailing" id="ztI-Ru-yiC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="XXNibBridge Demo" id="fhR-mF-n1u"/>
+                    <connections>
+                        <outlet property="tableView" destination="z3F-i9-6i3" id="Vuz-qN-OOc"/>
+                        <segue destination="5xR-gx-K9P" kind="push" identifier="DetailSegue" id="pgH-yc-Gjo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WjH-dX-EV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="489" y="331"/>
+            <point key="canvasLocation" x="492" y="331"/>
         </scene>
         <!--.xib Bridge-->
         <scene sceneID="bSe-86-MaO">
@@ -120,7 +117,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="cv8-n1-HF1" kind="relationship" relationship="rootViewController" id="T64-jo-PM7"/>
+                        <segue destination="bwD-Uw-tzX" kind="relationship" relationship="rootViewController" id="tND-N2-XFH"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPe-RK-d3j" userLabel="First Responder" sceneMemberID="firstResponder"/>

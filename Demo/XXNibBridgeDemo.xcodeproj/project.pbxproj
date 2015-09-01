@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		488DAAFD1B95BA2A00680E56 /* XXConvensionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 488DAAFB1B95BA2A00680E56 /* XXConvensionCell.m */; };
+		488DAAFE1B95BA2A00680E56 /* XXConvensionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 488DAAFC1B95BA2A00680E56 /* XXConvensionCell.xib */; };
+		488DAB011B95BA4400680E56 /* XXMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 488DAB001B95BA4400680E56 /* XXMainViewController.m */; };
 		48ADAFEE1A5FD274008F2ED8 /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 48ADAFED1A5FD274008F2ED8 /* XXNibConvention.m */; };
 		48B78BB91A5E382400B662F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B78BB81A5E382400B662F7 /* main.m */; };
 		48B78BC21A5E382400B662F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B78BC01A5E382400B662F7 /* Main.storyboard */; };
@@ -32,6 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		488DAAFA1B95BA2A00680E56 /* XXConvensionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXConvensionCell.h; sourceTree = "<group>"; };
+		488DAAFB1B95BA2A00680E56 /* XXConvensionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXConvensionCell.m; sourceTree = "<group>"; };
+		488DAAFC1B95BA2A00680E56 /* XXConvensionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXConvensionCell.xib; sourceTree = "<group>"; };
+		488DAAFF1B95BA4400680E56 /* XXMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMainViewController.h; sourceTree = "<group>"; };
+		488DAB001B95BA4400680E56 /* XXMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMainViewController.m; sourceTree = "<group>"; };
 		48ADAFEC1A5FD274008F2ED8 /* XXNibConvention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibConvention.h; sourceTree = "<group>"; };
 		48ADAFED1A5FD274008F2ED8 /* XXNibConvention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibConvention.m; sourceTree = "<group>"; };
 		48B78BB31A5E382400B662F7 /* XXNibBridgeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XXNibBridgeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +81,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		488DAAF91B95B9F900680E56 /* Nib Convention */ = {
+			isa = PBXGroup;
+			children = (
+				488DAAFA1B95BA2A00680E56 /* XXConvensionCell.h */,
+				488DAAFB1B95BA2A00680E56 /* XXConvensionCell.m */,
+				488DAAFC1B95BA2A00680E56 /* XXConvensionCell.xib */,
+			);
+			name = "Nib Convention";
+			sourceTree = "<group>";
+		};
 		48B78BAA1A5E382400B662F7 = {
 			isa = PBXGroup;
 			children = (
@@ -96,10 +114,13 @@
 			children = (
 				48B78BE01A5E6B2700B662F7 /* XXAppDelegate.h */,
 				48B78BE11A5E6B2700B662F7 /* XXAppDelegate.m */,
+				488DAAFF1B95BA4400680E56 /* XXMainViewController.h */,
+				488DAB001B95BA4400680E56 /* XXMainViewController.m */,
 				48B78BC01A5E382400B662F7 /* Main.storyboard */,
 				48B78BC31A5E382400B662F7 /* Images.xcassets */,
 				48B78BC51A5E382400B662F7 /* LaunchScreen.xib */,
-				48FAE4871A67AE3E003F1D6B /* Bridge views */,
+				488DAAF91B95B9F900680E56 /* Nib Convention */,
+				48FAE4871A67AE3E003F1D6B /* Bridge Views */,
 				48B78BDC1A5E38AF00B662F7 /* XXNibBridge Classes */,
 				48B78BB61A5E382400B662F7 /* Supporting Files */,
 			);
@@ -144,7 +165,7 @@
 			path = ../../XXNibBridge;
 			sourceTree = "<group>";
 		};
-		48FAE4871A67AE3E003F1D6B /* Bridge views */ = {
+		48FAE4871A67AE3E003F1D6B /* Bridge Views */ = {
 			isa = PBXGroup;
 			children = (
 				48B78BE21A5E6B2700B662F7 /* XXDogeView.h */,
@@ -154,7 +175,7 @@
 				48B78BE61A5E6B2700B662F7 /* XXSarkView.m */,
 				48B78BE71A5E6B2700B662F7 /* XXSarkView.xib */,
 			);
-			name = "Bridge views";
+			name = "Bridge Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +264,7 @@
 				48B78BC71A5E382400B662F7 /* LaunchScreen.xib in Resources */,
 				48B78BC41A5E382400B662F7 /* Images.xcassets in Resources */,
 				48B78BEC1A5E6B2700B662F7 /* XXSarkView.xib in Resources */,
+				488DAAFE1B95BA2A00680E56 /* XXConvensionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +285,9 @@
 				48B78BDF1A5E38AF00B662F7 /* XXNibBridge.m in Sources */,
 				48B78BE91A5E6B2700B662F7 /* XXDogeView.m in Sources */,
 				48B78BEB1A5E6B2700B662F7 /* XXSarkView.m in Sources */,
+				488DAAFD1B95BA2A00680E56 /* XXConvensionCell.m in Sources */,
 				48ADAFEE1A5FD274008F2ED8 /* XXNibConvention.m in Sources */,
+				488DAB011B95BA4400680E56 /* XXMainViewController.m in Sources */,
 				48B78BE81A5E6B2700B662F7 /* XXAppDelegate.m in Sources */,
 				48B78BB91A5E382400B662F7 /* main.m in Sources */,
 			);

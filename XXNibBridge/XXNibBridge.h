@@ -1,5 +1,5 @@
 // XXNibBridge.h
-// Version 2.1
+// Version 2.2
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //

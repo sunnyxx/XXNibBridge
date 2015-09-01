@@ -1,5 +1,5 @@
 // XXNibBridge.m
-// Version 2.1
+// Version 2.2
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -25,7 +25,7 @@
 #import <objc/runtime.h>
 
 @interface XXNibBridgeImplementation : NSObject
-// It must have "NS_REPLACES_RECEIVER" attribute for right ownership for "self" under ARC.
+/// `NS_REPLACES_RECEIVER` attribute is a must for right ownership for `self` under ARC.
 - (id)hackedAwakeAfterUsingCoder:(NSCoder *)decoder NS_REPLACES_RECEIVER;
 @end
 
@@ -56,7 +56,7 @@
 
 + (UIView *)instantiateRealViewFromPlaceholder:(UIView *)placeholderView {
     
-    // Required to conform "XXNibConvension".
+    // Required to conform `XXNibConvension`.
     UIView *realView = [[placeholderView class] xx_instantiateFromNib];
 
     realView.tag = placeholderView.tag;
@@ -71,11 +71,11 @@
     // Copy autolayout constrains.
     for (NSLayoutConstraint *constraint in placeholderView.constraints) {
         if (!constraint.secondItem) {
-            // "Height" or "Width" constraint.
+            // Height or width constraint.
             [constraint setValue:realView forKey:@"firstItem"];
             [realView addConstraint:constraint];
         } else if ([constraint.firstItem isEqual:constraint.secondItem]) {
-            // "Aspect Ratio" constraint.
+            // Aspect ratio constraint.
             [constraint setValue:realView forKey:@"firstItem"];
             [constraint setValue:realView forKey:@"secondItem"];
             [realView addConstraint:constraint];

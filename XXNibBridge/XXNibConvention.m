@@ -1,5 +1,5 @@
 // XXNibConvention.m
-// Version 2.1
+// Version 2.2
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -35,17 +35,6 @@
     return [UINib nibWithNibName:self.nibid bundle:nil];
 }
 
-+ (id)xx_instantiateFromNib {
-    NSArray *views = [self.nib instantiateWithOwner:nil options:nil];
-    for (UIView *view in views) {
-        if ([view isMemberOfClass:self.class]) {
-            return view;
-        }
-    }
-    NSAssert(NO, @"Expect file: %@", [NSString stringWithFormat:@"%@.xib", self.nibid]);
-    return nil;
-}
-
 #pragma mark - XXNibConventionDeprecated
 
 + (NSString *)xx_nibID {
@@ -56,6 +45,12 @@
     return self.nib;
 }
 
+#pragma mark - Public
+
++ (id)xx_instantiateFromNib {
+    return [self xx_instantiateFromNibInBundle:nil owner:nil];
+}
+
 + (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner {
     NSArray *views = [self.xx_nib instantiateWithOwner:owner options:nil];
     for (UIView *view in views) {
@@ -63,7 +58,7 @@
             return view;
         }
     }
-    NSAssert(NO, @"Expect file: %@", [NSString stringWithFormat:@"%@.xib", self.xx_nibID]);
+    NSAssert(NO, @"Expect file: %@", [NSString stringWithFormat:@"%@.xib", self.nibid]);
     return nil;
 }
 

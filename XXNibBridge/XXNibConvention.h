@@ -1,5 +1,5 @@
 // XXNibConvention.h
-// Version 2.1
+// Version 2.2
 //
 // Copyright (c) 2015 sunnyxx ( http://github.com/sunnyxx )
 //
@@ -31,15 +31,6 @@
 /// Nib file in main bundle with class name by convention.
 + (UINib *)nib;
 
-/// Instantiate from `+ nib` with no owner, no options.
-///
-/// Required:
-///   FooView.h, FooView.m, FooView.xib
-/// Usage:
-///   FooView *view = [FooView xx_instantiateFromNib];
-///
-+ (id)xx_instantiateFromNib;
-
 @end
 
 @protocol XXNibConventionDeprecated <NSObject>
@@ -50,12 +41,22 @@
 /// See `+ nib`, I don't like this selector.
 + (UINib *)xx_nib;
 
-/// See `+ xx_instantiateFromNib` but with owner.
-+ (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner;
-
 @end
 
 @interface UIView (XXNibConvention) <XXNibConvention, XXNibConventionDeprecated>
+
+/// Instantiate from `+ nib` with no owner, no options.
+///
+/// Required:
+///   FooView.h, FooView.m, FooView.xib
+/// Usage:
+///   FooView *view = [FooView xx_instantiateFromNib];
+///
++ (id)xx_instantiateFromNib;
+
+/// See `+ xx_instantiateFromNib` but with bundle and owner.
++ (id)xx_instantiateFromNibInBundle:(NSBundle *)bundle owner:(id)owner;
+
 @end
 
 @interface UIViewController (XXNibConvention)
