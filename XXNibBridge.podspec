@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "XXNibBridge"
-  s.version      = "2.2"
+  s.version      = "2.2.1"
   s.summary      = "XXNibBridge"
   s.description  = "Bridge a nib file to another nib or storyboard"
   s.homepage     = "https://github.com/sunnyxx/XXNibBridge"
