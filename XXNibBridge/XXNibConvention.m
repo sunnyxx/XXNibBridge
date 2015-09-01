@@ -35,7 +35,7 @@
     return [UINib nibWithNibName:self.nibid bundle:nil];
 }
 
-#pragma mark - XXNibConventionDeprecated
+#pragma mark - XXDeprecatedNibConvention
 
 + (NSString *)xx_nibID {
     return self.nibid;
@@ -66,11 +66,33 @@
 
 @implementation UIViewController (XXNibConvention)
 
+#pragma mark - XXNibConvention
+
++ (NSString *)nibid {
+    return NSStringFromClass(self);
+}
+
++ (UINib *)nib {
+    return [UINib nibWithNibName:self.nibid bundle:nil];
+}
+
+#pragma mark - XXDeprecatedNibConvention
+
++ (NSString *)xx_nibID {
+    return self.nibid;
+}
+
++ (UINib *)xx_nib {
+    return self.nib;
+}
+
+#pragma mark - Public
+
 + (id)xx_instantiateFromStoryboardNamed:(NSString *)name {
     NSParameterAssert(name.length > 0);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:name bundle:nil];
     NSAssert(storyboard != nil, @"Expect file: %@", [NSString stringWithFormat:@"%@.storyboard", name]);
-    return [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self)];
+    return [storyboard instantiateViewControllerWithIdentifier:self.nibid];
 }
 
 @end

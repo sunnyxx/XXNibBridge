@@ -33,7 +33,7 @@
 
 @end
 
-@protocol XXNibConventionDeprecated <NSObject>
+@protocol XXDeprecatedNibConvention <NSObject>
 
 /// See `+ nibid`, I don't like this selector.
 + (NSString *)xx_nibID;
@@ -43,7 +43,7 @@
 
 @end
 
-@interface UIView (XXNibConvention) <XXNibConvention, XXNibConventionDeprecated>
+@interface UIView (XXNibConvention) <XXNibConvention, XXDeprecatedNibConvention>
 
 /// Instantiate from `+ nib` with no owner, no options.
 ///
@@ -59,7 +59,7 @@
 
 @end
 
-@interface UIViewController (XXNibConvention)
+@interface UIViewController (XXNibConvention) <XXNibConvention, XXDeprecatedNibConvention>
 
 /// Instantiate from given storyboard which class name as its `storyboard identifier`
 + (id)xx_instantiateFromStoryboardNamed:(NSString *)name;
