@@ -29,7 +29,7 @@
 
 + (NSString *)nibid {
     NSString *className = NSStringFromClass(self);
-    if ([className containsString:@"."]) {
+    if ([className rangeOfString:@"."].location != NSNotFound) {
         // Swift class name contains module name
         return [className componentsSeparatedByString:@"."].lastObject;
     }

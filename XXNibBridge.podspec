@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "XXNibBridge"
-  s.version      = "2.2.2"
+  s.version      = "2.2.3"
   s.summary      = "XXNibBridge"
   s.description  = "Bridge a nib file to another nib or storyboard"
   s.homepage     = "https://github.com/sunnyxx/XXNibBridge"
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.platform     = :ios, "6.0"
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  s.source       = { :git => "https://github.com/sunnyxx/XXNibBridge.git", :tag => "2.2.2" }
+  s.source       = { :git => "https://github.com/sunnyxx/XXNibBridge.git", :tag => "2.2.3" }
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   s.source_files  = "XXNibBridge/*.{h,m}"
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
