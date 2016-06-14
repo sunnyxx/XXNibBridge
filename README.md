@@ -3,7 +3,7 @@ XXNibBridge
 
 # Installation  
 
-`pod 'XXNibBridge', '~> 2.2'`
+`pod 'XXNibBridge', '~> 2.3.0'`
 
 or `pod search XXNibBridge` to check
 
@@ -45,3 +45,5 @@ Done:
 # How it works
 
 中文介绍请见[我的blog](http://blog.sunnyxx.com/2014/07/01/ios_ib_bridge/)
+
+

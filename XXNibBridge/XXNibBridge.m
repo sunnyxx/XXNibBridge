@@ -69,18 +69,51 @@
     realView.translatesAutoresizingMaskIntoConstraints = placeholderView.translatesAutoresizingMaskIntoConstraints;
     
     // Copy autolayout constrains.
-    for (NSLayoutConstraint *constraint in placeholderView.constraints) {
-        if (!constraint.secondItem) {
-            // Height or width constraint.
-            [constraint setValue:realView forKey:@"firstItem"];
-            [realView addConstraint:constraint];
-        } else if ([constraint.firstItem isEqual:constraint.secondItem]) {
-            // Aspect ratio constraint.
-            [constraint setValue:realView forKey:@"firstItem"];
-            [constraint setValue:realView forKey:@"secondItem"];
-            [realView addConstraint:constraint];
+    if (placeholderView.constraints.count > 0) {
+        
+        // We only need to copy "self" constraints (like width/height constraints)
+        // from placeholder to real view
+        for (NSLayoutConstraint *constraint in placeholderView.constraints) {
+            
+            NSLayoutConstraint* newConstraint;
+            
+            // "Height" or "Width" constraint
+            // "self" as its first item, no second item
+            if (!constraint.secondItem) {
+                newConstraint =
+                [NSLayoutConstraint constraintWithItem:realView
+                                             attribute:constraint.firstAttribute
+                                             relatedBy:constraint.relation
+                                                toItem:nil
+                                             attribute:constraint.secondAttribute
+                                            multiplier:constraint.multiplier
+                                              constant:constraint.constant];
+            }
+            // "Aspect ratio" constraint
+            // "self" as its first AND second item
+            else if ([constraint.firstItem isEqual:constraint.secondItem]) {
+                newConstraint =
+                [NSLayoutConstraint constraintWithItem:realView
+                                             attribute:constraint.firstAttribute
+                                             relatedBy:constraint.relation
+                                                toItem:realView
+                                             attribute:constraint.secondAttribute
+                                            multiplier:constraint.multiplier
+                                              constant:constraint.constant];
+            }
+            
+            // Copy properties to new constraint
+            if (newConstraint) {
+                newConstraint.shouldBeArchived = constraint.shouldBeArchived;
+                newConstraint.priority = constraint.priority;
+                if ([UIDevice currentDevice].systemVersion.floatValue >= 7.0f) {
+                    newConstraint.identifier = constraint.identifier;
+                }
+                [realView addConstraint:newConstraint];
+            }
         }
     }
+    
     return realView;
 }
 
