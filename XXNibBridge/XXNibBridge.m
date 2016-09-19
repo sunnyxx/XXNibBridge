@@ -71,6 +71,15 @@
     // Copy autolayout constrains.
     if (placeholderView.constraints.count > 0) {
         
+        // Capture the placeholderView until the end of the current run loop cycle.
+        // This is needed when a view is initialized within a layoutSubviews call
+        // (example: UICollectionView cells).
+        // In this case iOS still evaluates the placeholder constraint, which without
+        // the capture would have a dangling pointer on the `firstItem` property.
+        dispatch_async(dispatch_get_main_queue(), ^{
+          (void)placeholderView;
+        });
+        
         // We only need to copy "self" constraints (like width/height constraints)
         // from placeholder to real view
         for (NSLayoutConstraint *constraint in placeholderView.constraints) {
