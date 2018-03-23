@@ -23,11 +23,14 @@
 
 #import "XXNibConvention.h"
 
-/// Any subclass of UIView that conforms to this protocol is considered accept nib bridge.
-/// Usage:
-///
-///     @interface FooView () <XXNibBridge>
-///     @end
-///
+/**
+ Any subclass of UIView that conforms to this protocol is considered accept nib bridge.
+ 
+ Usage:
+ @code
+ @interface FooView () <XXNibBridge>
+ @end
+ @endcode
+ */
 @protocol XXNibBridge <XXNibConvention>
 @end
