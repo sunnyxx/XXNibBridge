@@ -19,6 +19,8 @@
 
 - (void)awakeFromNib {
     // IBOutlets are fine
+    [super awakeFromNib];
+    
     self.dogeView.layer.cornerRadius = 5;
     self.heightConstraint.constant = 81;
 }
