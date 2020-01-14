@@ -6,7 +6,11 @@ let package = Package(
     name: "XXNibBridge",
     platforms: [.iOS(.v8)],
     products: [
-        .library(name: "XXNibBridge", targets: ["XXNibBridge"])
+        .library(
+            name: "XXNibBridge",
+            type: .dynamic,
+            targets: ["XXNibBridge"]
+        )
     ],
     targets: [
         .target(
