@@ -8,14 +8,14 @@ let package = Package(
     products: [
         .library(
             name: "XXNibBridge",
-            type: .dynamic,
             targets: ["XXNibBridge"]
         )
     ],
     targets: [
         .target(
             name: "XXNibBridge",
-            path: "XXNibBridge"
+            path: "XXNibBridge",
+            publicHeadersPath: "XXNibBridge"
         )
     ]
 )
