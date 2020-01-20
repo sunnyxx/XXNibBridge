@@ -5,17 +5,6 @@ import PackageDescription
 let package = Package(
     name: "XXNibBridge",
     platforms: [.iOS(.v8)],
-    products: [
-        .library(
-            name: "XXNibBridge",
-            targets: ["XXNibBridge"]
-        )
-    ],
-    targets: [
-        .target(
-            name: "XXNibBridge",
-            path: "XXNibBridge",
-            publicHeadersPath: "XXNibBridge"
-        )
-    ]
+    products: [.library(name: "XXNibBridge", targets: ["XXNibBridge"])],
+    targets: [.target(name: "XXNibBridge", path: "XXNibBridge")]
 )
